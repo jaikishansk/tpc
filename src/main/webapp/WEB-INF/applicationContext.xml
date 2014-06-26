@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+ 
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource"
+          p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}"/>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.edu.tpc.domain" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <tx:annotation-driven/>
+    
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+                    <property name="host" value="smtp.gmail.com" />
+                    <property name="port" value="25" />
+                    <property name="username" value="jaikishan.khatwani@strumsoft.com" />
+                    <property name="password" value="jskbmk12345" />
+                    <property name="javaMailProperties">
+                                <props>
+                                        <!-- Use SMTP transport protocol -->
+                                        <prop key="mail.transport.protocol">smtp</prop>
+                                        <!-- Use SMTP-AUTH to authenticate to SMTP server -->
+                                        <prop key="mail.smtp.auth">true</prop>
+                                        <!-- Use TLS to encrypt communication with SMTP server -->
+                                        <prop key="mail.smtp.starttls.enable">true</prop>
+                                        <prop key="mail.debug">true</prop>
+                                </props>
+                    </property>
+        </bean>
+    
+<!--
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="org.springframework.dao.DataAccessException" value="error/DBConErrorPage"/> 
+            </map>
+        </property>
+    </bean>
+-->
+    <bean id="hibernateTemplateBean" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory" /> 
+    
+    <bean id="i18nService" class="com.edu.tpc.controller.I18NMessageUtil">
+        <property name="amessageSource" ref="messageSource"/>
+    </bean>
+
+    <bean id="userDAO" class="com.edu.tpc.dao.UserDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="userService" class="com.edu.tpc.service.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+
+    <bean id="coursesDAO" class="com.edu.tpc.dao.CoursesDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="coursesService" class="com.edu.tpc.service.CoursesServiceImpl">
+        <property name="coursesDAO" ref="coursesDAO"/>
+    </bean>
+
+    <bean id="placementDAO" class="com.edu.tpc.dao.PlacementDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="placementService" class="com.edu.tpc.service.PlacementServiceImpl">
+        <property name="placementDAO" ref="placementDAO"/>
+    </bean>
+
+    <bean id="dashBoardDAO" class="com.edu.tpc.dao.DashboardDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="erExcelView" class="com.edu.tpc.common.ERExcelView"></bean>
+   
+    <bean id="dashBoardService" class="com.edu.tpc.service.DashboardServiceImpl">
+        <property name="dashBoardDAO" ref="dashBoardDAO"/>
+        <property name="eRExcelView" ref="erExcelView"/>
+    </bean>
+
+    <bean id="candidateDAO" class="com.edu.tpc.dao.CandidateDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="candidateService" class="com.edu.tpc.service.CandidateServiceImpl">
+        <property name="candidateDAO" ref="candidateDAO"/>
+    </bean>
+
+    <bean id="companyDAO" class="com.edu.tpc.dao.CompanyDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="companyService" class="com.edu.tpc.service.CompanyServiceImpl">
+        <property name="companyDAO" ref="companyDAO"/>
+    </bean>
+
+    <bean id="documentDAO" class="com.edu.tpc.dao.DocumentDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="documentService" class="com.edu.tpc.service.DocumentServiceImpl">
+        <property name="documentDAO" ref="documentDAO"/>
+    </bean> 
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+
+    <bean id="configInfoDAO" class="com.edu.tpc.dao.ConfigInfoDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/>
+    </bean>
+
+    <bean id="configInfoService" class="com.edu.tpc.service.ConfigInfoServiceImpl">
+        <property name="configInfoDAO" ref="configInfoDAO"/>
+    </bean>
+
+    <bean id="notificationDAO" class="com.edu.tpc.dao.NotificationDAOImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplateBean"/> 
+    </bean>
+
+    <bean id="notificationService" class="com.edu.tpc.service.NotificationServiceImpl"> 
+            <property name="notificationDAO" ref="notificationDAO"/> 
+            <property name="candidateService" ref="candidateService"/> 
+            <property name="emailService" ref="emailService"/> 
+            <property name="templateMessage" ref="templateMessage"/>  
+    </bean>   
+    
+    <bean id="emailService" class="com.edu.tpc.service.EmailServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+    </bean> 
+    
+    <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+                    <property name="from" value="jaikishan.khatwani@strumsoft.com" />
+                    <property name="subject" value="SGSITS placement cell notification" />
+    </bean>
+            
+</beans>

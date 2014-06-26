@@ -1,0 +1,291 @@
+body{
+    background: #FEF0C9; color:white;
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, sans-serif; 
+    height: 100%;
+    width: 100%;
+}
+
+.allButtons{
+    background:#A52A2A;
+    color:white;
+}
+
+.allButtons:hover{
+     background:#800000;
+}
+
+.loginHeader,
+.loginContent{
+    border-top: 1px solid #330000;
+    border-left: 1px solid #330000;
+    border-right: 1px solid #330000;
+    width: 20%;
+}
+.loginHeader{
+    color:white;
+    background-color:#A52A2A;
+    height: 25px;
+    margin-top:5%;
+    margin-left:75%;
+    text-align:center;
+}
+.loginContent{
+    color:black;
+    background-color:#FEF0C9; 
+    margin-left:75%;
+    margin-top: 0px;
+    border-bottom: 1px solid #330000;
+}
+.loginCred{
+    float:left;
+    margin-left:3%;
+    width:85%;
+    color: black;
+    padding-left: 2px;
+}
+.loginCredInput{
+    float:left;
+    color: black;
+    width: 85%;
+    margin-left: 2px; 
+}
+.loginButn{ 
+    padding-bottom: 15px;
+    margin-left:4%;
+    margin-top:1%;
+    color:white;
+}
+.loginErr{
+    float:left;
+    color:red;
+    font-weight: bold;
+    margin-left: 40%; 
+}
+.logOut{
+    margin-left: 40%;
+    margin-top: 10%;
+    color:black;
+}
+.pageHeading{
+    margin-top: 5%;
+    /*font-size: 18px;*/
+    font-weight: bold;
+    color:black;
+}
+.fieldError1{
+    margin-left: 10%;
+    margin-top:40%;
+    color:red;
+}
+.fieldError2{
+    margin-left: 10%;
+    margin-top:50%;
+    color:red;
+}
+.tabHeader{
+    margin-top: 4%;
+    margin-left: 23%;
+    border-top: 1px solid #330000;
+    border-left: 1px solid #330000;
+    border-right: 1px solid #330000;
+    width: 55.8%;
+    color:white;
+    background-color:#A52A2A;
+    height: 2%;
+}
+.tabContent,
+.ugTabContent {
+    width: 55.8%;
+    border-top: 1px solid #330000;
+    border-left: 1px solid #330000;
+    border-right: 1px solid #330000;
+    color:black;
+    background-color:#FEF0C9;
+    height:300px;
+    margin-left:23%;
+    border-bottom: 1px solid #330000;
+}
+.ugTabContent{
+    height:328px;
+}
+.firstField{
+    float:left;
+    color: black;
+    width: 37%;
+    padding-left: 2px;
+    margin-left: 10%;
+}
+.firstFieldInput{
+    float:left;
+    color: black;
+    width: 80%;
+    margin-left: 2px;
+}
+.secondField{
+    float:left;
+    width: 40%;
+    margin-left: 5%; 
+}
+.secondFieldInput{
+    float:left;
+    color: black;
+    width: 80%;
+    margin-left: 0%; 
+}
+
+.pgMessage{
+    margin-left: 25%;
+    margin-top:10%;
+    color:black;
+}
+
+.eduTble{
+    float:left;
+    margin-left: 1%;
+    border: 1px solid #666666;
+} 
+table.eduTble th { 
+        border: 1px #ccc solid;
+	background-color: #FF4500;
+        color:white;
+        height: 50px;
+        padding: 2px;
+        overflow: hidden;
+}
+
+table.eduTbleTemp td { 
+        border: 1px #666666 solid;
+        padding: 2px;
+        background-color: #FEF0C9;
+        overflow: hidden;
+}
+.eduTbleTxt{
+    width:90%;
+}
+.eduTbleDD{
+    width:100%;
+}
+.eduTbleNum{
+    width:80%;
+} 
+
+.eligTbleDD{
+    width:120%;
+}
+
+table.semMarksTble{ 
+    table-layout: fixed; 
+    border: 1px #ccc solid;
+    border-collapse: collapse;
+    width: 98%;
+    
+    margin-left: 1%; 
+}
+
+table.semMarksTble th {
+        width:10%;
+        border: 1px #666666 solid;
+        table-layout: fixed;
+	padding: 2px;
+	background-color: #FF4500;
+        color:white; 
+}
+table.semMarksTble td {
+    padding: 3px;
+    border: 1px #ccc solid;
+    width: 10%;
+    overflow: hidden;
+}
+
+
+.chkBox{
+    width:1%;
+    table-layout: fixed;
+}
+ 
+.registerButn{
+    margin-left:10%;
+    margin-bottom: 2%;
+}
+.dynaRowButn{
+    margin-left: 2%;
+}
+
+.semMarksButn{
+    margin-left: 1%;
+}
+
+.typeBButn {
+    margin-left: 10%;
+}
+
+.placementPref {
+    float:left;
+    width:80%;
+    color:black;
+    margin-left: 10%;
+}
+
+table.viewPI {
+    margin: 1em;
+    border-collapse: collapse;
+}
+table.viewPI td {
+    padding: .3em;
+    border: 1px #ccc solid;
+}
+table.viewPI th {
+    border: 1px #666666 solid;
+    padding: 2px; 
+    background-color: #FF4500;
+    color:white;
+} 
+
+.searchFieldLabel{
+    float:left;
+    color: black;
+    width: 15%;
+    padding-left: 2px;
+    margin-left: 10%;
+}
+.usOperatorInput{
+    float:left;
+    color: black;
+    width: 15%;
+    margin-left: 1%;
+}
+.searchFieldInput{
+    float:left;
+    color: black;
+    width: 20%;
+    margin-left: 1%;
+} 
+.bsOperatorInput{
+    float:left;
+    color: black;
+    width: 15%;
+    margin-left: 1%;
+}
+.ncPref {
+    float:left;
+    margin-left: 10%;
+}
+.ncPrefTA {
+    width: 45%;
+    height: 70%;
+    border: 3px solid #cccccc;
+} 
+
+.errorMessage{ 
+    color: red;
+    text-align: center;
+    margin-top:5%;
+    font-weight: bold; 
+}
+
+.resultMessage{ 
+    color:black;
+    text-align: center;
+    margin-top: 10%;
+    font-weight: bold;
+}

@@ -1,0 +1,246 @@
+.headerStrip {
+    margin:0;
+    padding:0;
+    background-color:#8B0000;
+    color:white;  
+}
+.headerStrip a {
+    text-decoration: none;
+    margin-left: 50%;
+    color:white;
+}
+.footerStrip {
+    margin:0;
+    padding:0;
+    background-color:#B97A57;
+    margin-top: 40%;
+    color:white; 
+}
+
+#menuwrapper ul, #menuwrapper ul li{
+    margin:0;
+    padding:0;
+    list-style:none;
+    width:100%;
+}
+
+/* We float the li list to the left and apply background color and
+border right white */
+#menuwrapper ul li{
+    float:left;
+    background-color:#B97A57;
+    border-right:solid 2px white;
+    cursor:pointer;
+    width:16.46%;
+}
+
+/* We apply the background hover color when user hover the mouse
+over of the li component */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover,
+#menuwrapper ul li.iehover{
+    background-color:#A52A2A;
+    position:relative;
+}
+
+/* We apply the link style */
+#menuwrapper ul li a{
+    padding:5px 15px;
+    color:#ffffff;
+    display:inline-block;
+    text-decoration:none;
+}
+
+/**** SECOND LEVEL MENU ****/
+/* We make the position to absolute for flyout menu and hidden the
+ul until the user hover the parent li item */
+#menuwrapper ul li ul{
+    position:absolute;
+    display:none;
+}
+
+/* When user has hovered the li item, we show the ul list by
+applying display:block, note: 25px is the menu height.  */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul,
+#menuwrapper ul li.iehover ul{
+    left:0;
+    top:29px;
+    display:block;
+}
+
+/* As the parent li has float:left property, we overwrite for the
+submenu (level 2) to float none (normal position)  */
+#menuwrapper ul li ul li{
+    float:none;
+    width:221px;
+    background-color:#B97A57;
+}
+
+/* We change the background color for the level 2 submenu when
+hovering the menu */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li:hover,
+#menuwrapper ul li.iehover ul li.iehover{
+    background-color:#A52A2A;
+}
+
+/* We style the color of level 2 links */
+#menuwrapper ul li ul li a{
+    color:white;
+    display:inline-block;
+}
+
+/**** THIRD LEVEL MENU ****/
+/* We need to hide the 3rd menu, when hovering the first level menu
+*/
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li ul,
+#menuwrapper ul li.iehover ul li ul{
+    position:absolute;
+    display:none;
+}
+
+/* We show the third level menu only when they hover the second
+level menu parent */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li:hover ul,
+#menuwrapper ul li.iehover ul li.iehover ul{
+    display:block;
+    left:200px;
+    top:3px;
+}
+
+/* We change the background color for the level 3 submenu*/
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li:hover ul li,
+#menuwrapper ul li.iehover ul li.iehover ul li{
+    background:#B97A57;
+}
+
+/* We change the background color for the level 3 submenu when
+hovering the menu */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li:hover ul li:hover,
+#menuwrapper ul li.iehover ul li.iehover ul li.iehover{
+    background:#A52A2A;
+}
+
+/* We change the level 3 link color */
+/* for IE < 9 we using class .iehover */
+#menuwrapper ul li:hover ul li:hover ul li a,
+#menuwrapper ul li.iehover ul li.iehover ul li a{
+    color:#ffffff;
+}
+
+/* Clear float */
+.clear{
+    clear:both;
+} 
+
+#navbar {
+  margin-left: 21%;
+  margin-top: 1%;
+  width:100%;
+ } 
+ 
+ #navbar #holder {
+  height:5%;
+  width:100%;
+  padding-left:2%; 
+ }
+
+ #navbar #holder ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:2%; 
+ }
+
+ #navbar #holder li {
+     float:left; 
+ }
+
+ #navbar #holder ul li { 
+     width:8%;
+ }
+  
+ #navbar #holder ul li a {
+  text-decoration:none;
+  float:left;
+  margin-right:5px; 
+  color:white;
+  padding:5px;
+  width: 90%;
+  height:20px;
+  text-align:center;
+  margin-left:1%;
+  display:block;
+  background:#B97A57; 
+  -moz-border-radius-topleft:15px;
+  -moz-border-radius-topright:15px;
+  -webkit-border-top-left-radius:15px;
+  -webkit-border-top-right-radius:15px;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  border-radius: 15px 15px 0 0;
+ }
+
+#navbar #holder ul li a.selected {
+     background: #A52A2A;
+}
+
+#navbar #holder ul li a.unselected {
+     background: #B97A57;
+}
+
+#navbar3 {
+  margin-left: 33%;
+  margin-top: 1%;
+  width:100%;
+ }
+
+#navbar3 #holder3 {
+  height:5%;
+  width:100%;
+  padding-left:2%;
+ }
+
+ #navbar3 #holder3 ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:2%;
+ }
+
+ #navbar3 #holder3 li {
+     float:left;
+ }
+ 
+ #navbar3 #holder3 ul li a {
+  text-decoration:none;
+  float:left;
+  margin-right:5px;
+  color:white;
+  padding:5px;
+  width:120px;
+  height:20px;
+  text-align:center;
+  display:block;
+  background:#B97A57;
+  -moz-border-radius-topleft:15px;
+  -moz-border-radius-topright:15px;
+  -webkit-border-top-left-radius:15px;
+  -webkit-border-top-right-radius:15px;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  border-radius: 15px 15px 0 0;
+ }
+
+#navbar3 #holder3 ul li a.selected {
+     background: #A52A2A;
+}
+
+#navbar3 #holder3 ul li a.unselected {
+     background: #B97A57;
+}
