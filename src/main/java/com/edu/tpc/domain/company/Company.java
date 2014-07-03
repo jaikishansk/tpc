@@ -33,7 +33,7 @@ import org.hibernate.annotations.Cascade;
 
 
 @Entity
-@Table(name="company")
+@Table(name="Company")
 public class Company extends AuditInfo  implements java.io.Serializable { 
     // general info
     @Id 
