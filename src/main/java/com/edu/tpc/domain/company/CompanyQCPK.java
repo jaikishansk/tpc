@@ -13,7 +13,7 @@ import javax.persistence.Embeddable;
 public class CompanyQCPK implements java.io.Serializable {
         @Column private int orgId;
         @Column private int courseId;
-        @Column private int companyId; 
+        @Column private Integer companyId; 
 
         public CompanyQCPK() {
         } 
@@ -36,7 +36,7 @@ public class CompanyQCPK implements java.io.Serializable {
             return companyId;
         }
 
-        public void setCompanyId(int companyId) {
+        public void setCompanyId(Integer companyId) {
             this.companyId = companyId;
         }
 
@@ -68,5 +68,11 @@ public class CompanyQCPK implements java.io.Serializable {
                 hash=31*hash+companyId;
                 hash=31*hash+courseId;
                 return hash;
-        } 
+        }
+
+		@Override
+		public String toString() {
+			return "CompanyQCPK [orgId=" + orgId + ", courseId=" + courseId
+					+ ", companyId=" + companyId + "]";
+		} 
 }

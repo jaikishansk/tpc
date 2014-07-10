@@ -42,9 +42,11 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void save(Company company) {   
         logger.info("Saving company with company name '"+company.getCompanyName()+"'...");   
-        getHibernateTemplate().merge(company); 
+        //getHibernateTemplate().merge(company);
+        getHibernateTemplate().save(company);
         logger.info("Successfully saved company with company name '"+company.getCompanyName()+"'...");  
-    } 
+    }
+    
     @Override
     public String getCompanyName(int companyId) { 
         Company company=(Company)getHibernateTemplate().get(Company.class, companyId);
@@ -70,9 +72,9 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
           List result=(List)getHibernateTemplate().execute(new HibernateCallback() {
                 @Override
                 public Object doInHibernate(Session session) throws HibernateException, SQLException { 
-                    Query q = session.createSQLQuery("select get_sequence_next(:seqname,:orgId)")
-                                                 . setParameter("seqname", "company_seq").setParameter("orgId", orgId);
-                    //q.setString("seqname", "candidate_seq");
+                   Query q = session.createSQLQuery("select get_sequence_next(:seqname,:orgId)")
+                            .setParameter("seqname", "company_seq").setParameter("orgId", orgId);
+                  
                     return q.list();
                   }
               }); 

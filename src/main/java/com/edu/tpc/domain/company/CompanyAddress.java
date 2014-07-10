@@ -27,23 +27,29 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name="CompanyAddress") 
 public class CompanyAddress extends BaseAddress implements java.io.Serializable {
-    @Id
-    @Column(name="companyId")
-    private int companyId; 
+    
+	@Id
+	@Column(name="Id")
+    private Integer Id;
+	
+	@Column(name="CompanyId")
+    private Integer CompanyId; 
     @Column private int orgId; 
     
     @OneToOne(optional=false,fetch = FetchType.LAZY)
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @PrimaryKeyJoinColumn
     private Company company;
 
+   
+   public void setCompanyId(Integer companyId) {
+        this.CompanyId = companyId;
+    }
+    
     public int getCompanyId() {
-        return companyId;
+        return CompanyId;
     }
 
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
 
     public int getOrgId() {
         return orgId;
@@ -59,6 +65,19 @@ public class CompanyAddress extends BaseAddress implements java.io.Serializable 
 
     public void setCompany(Company company) {
         this.company = company;
-    } 
-     
+    }
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "CompanyAddress [Id=" + Id + ", CompanyId=" + CompanyId
+				+ ", orgId=" + orgId + "]";
+	} 
 }

@@ -37,33 +37,41 @@ public class CompanyServiceImpl implements CompanyService {
     }
     @Override
     public void registerCompany(Company company) { 
-        System.out.println("registering company..."); 
-        int orgId=company.getOrgId();
-        int companyId=companyDAO.getNextCompanyID(orgId);
-        company.setCompanyId(companyId);
-        
-        // set address ids
-        CompanyAddress address=company.getAddress();
-        address.setCompany(company);
-        address.setOrgId(orgId);
-        address.setCompanyId(companyId);
-        
-        // set contact ids
-        List<CompanyContact> contacts= new ArrayList<CompanyContact>();
-        for(CompanyContact contact:contacts) {
-            contact.setOrgId(orgId);
-            contact.setCompany(company);
-            contact.setCompanyId(companyId);
-        } 
-        
-        // set qual ids
-        List<CompanyQualCriteria> companyQCs=company.getCompanyQC();
-        for(CompanyQualCriteria companyQC:companyQCs) {
-            companyQC.getPrimaryKey().setCompanyId(companyId);
-            companyQC.getPrimaryKey().setOrgId(orgId);
-        }
-        initializeCompanyAuditInfo(company);
-        companyDAO.save(company);
+    	try{
+	        System.out.println("registering company..."); 
+	        int orgId=company.getOrgId();
+	        Integer companyId= companyDAO.getNextCompanyID(orgId); //company.getCompanyId();
+	        company.setCompanyId(companyId);
+	        
+	        // set address ids
+	        CompanyAddress address=company.getAddress();
+	        address.setId(companyId);
+	        address.setCompany(company);
+	        address.setOrgId(orgId);
+	        address.setCompanyId(companyId);
+	        
+	        // set contact ids
+	        List<CompanyContact> contacts= new ArrayList<CompanyContact>();
+	        for(CompanyContact contact:contacts) {
+	            contact.setOrgId(orgId);
+	            contact.setCompany(company);
+	            contact.setCompanyId(companyId);
+	        } 
+	        
+	        // set qual ids
+	        List<CompanyQualCriteria> companyQCs=company.getCompanyQC();
+	        for(CompanyQualCriteria companyQC:companyQCs) {
+	        	companyQC.setCompany(company);
+	            companyQC.getPrimaryKey().setCompanyId(companyId);
+	            companyQC.getPrimaryKey().setOrgId(orgId);
+	        }
+	        initializeCompanyAuditInfo(company);
+	        
+	        System.out.println("saving company - " + company);
+	        companyDAO.save(company);
+    	}catch (Exception ex){
+    		ex.printStackTrace();
+    	}
     }
     
     @Override

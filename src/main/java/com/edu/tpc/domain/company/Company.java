@@ -37,7 +37,7 @@ import org.hibernate.annotations.Cascade;
 public class Company extends AuditInfo  implements java.io.Serializable { 
     // general info
     @Id 
-    private int companyId;
+    private Integer companyId;
     @Column private String companyName; 
     @Column private String companyType;
     
@@ -46,16 +46,20 @@ public class Company extends AuditInfo  implements java.io.Serializable {
     @Cascade({ org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
     private List<CompanyStreamsCriteria> companyStreams;
     
+    // address
+    @OneToOne(fetch = FetchType.EAGER, mappedBy="company" , optional=true)
+    @Cascade({ org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
+    private CompanyAddress address;
+    
+
+    
     // offer
     @Column private Double payPackage;
     @Column private Integer bondPeriod; 
     @Column private Integer yearOfPlacement; 
     @Column private int orgId; 
    
-    // address
-    @OneToOne(fetch = FetchType.LAZY, mappedBy="company" , optional=false)
-    @Cascade({ org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
-    private CompanyAddress address;
+
     
     // contact
     @OneToMany( fetch = FetchType.LAZY, mappedBy="company")
@@ -63,7 +67,7 @@ public class Company extends AuditInfo  implements java.io.Serializable {
     private List<CompanyContact> contacts;
     
     // eligibility
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="company")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="company")
     @Cascade({ org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
     private List<CompanyQualCriteria> companyQC; 
     
@@ -78,11 +82,11 @@ public class Company extends AuditInfo  implements java.io.Serializable {
                                            new InstantiateFactory(CompanyQualCriteria.class)); 
     }
 
-    public int getCompanyId() {
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(int companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
@@ -164,5 +168,16 @@ public class Company extends AuditInfo  implements java.io.Serializable {
 
     public void setCompanyQC(List<CompanyQualCriteria> companyQC) {
         this.companyQC = companyQC;
-    } 
+    }
+
+	@Override
+	public String toString() {
+		return "Company [companyId=" + companyId + ", companyName="
+				+ companyName + ", companyType=" + companyType
+				+ ", companyStreams=" + companyStreams + ", address=" + address
+				+ ", payPackage=" + payPackage + ", bondPeriod=" + bondPeriod
+				+ ", yearOfPlacement=" + yearOfPlacement + ", orgId=" + orgId
+				+ ", contacts=" + contacts + ", companyQC=" + companyQC + "]";
+	} 
+    
 }

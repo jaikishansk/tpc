@@ -73,6 +73,13 @@ public class CompanyQualCriteria implements java.io.Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
-    } 
-    
+    }
+
+	@Override
+	public String toString() {
+		return "CompanyQualCriteria [primaryKey=" + primaryKey
+				+ ", percentage=" + percentage + ", liveKT=" + liveKT
+				+ ", pastKT=" + pastKT + ", kTSubjects=" + kTSubjects
+				+ "]";
+	} 
 }

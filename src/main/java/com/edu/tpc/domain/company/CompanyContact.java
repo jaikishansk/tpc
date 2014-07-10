@@ -15,12 +15,14 @@ import javax.persistence.ManyToOne;
 @Entity
 @Table(name="CompanyContact")
 public class CompanyContact implements java.io.Serializable { 
-    @Column private int companyId;
+
+
+	@Column private Integer companyId;
     @Column private int orgId;
     @Column private String name;
     @Column private String cellNumber;
     @Column private String landLine;
-    @Id
+	@Id
     @Column private String emailId;
 
     @ManyToOne
@@ -31,7 +33,7 @@ public class CompanyContact implements java.io.Serializable {
         return companyId;
     }
 
-    public void setCompanyId(int companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
